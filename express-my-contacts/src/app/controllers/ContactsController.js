@@ -19,7 +19,7 @@ class ContactController {
   }
 
   async store(request, response) {
-    const { name, email, phone } = request.body;
+    const { name, email, phone, category_id } = request.body;
 
     if (!name) {
       return response.status(400).json({ error: 'Name is required' });
@@ -31,7 +31,7 @@ class ContactController {
       return response.status(400).json({ error: 'This e-mail is already in use' });
     }
 
-    const contact = await ContactsRepository.create({ name, email, phone });
+    const contact = await ContactsRepository.create({ name, email, phone, category_id });
 
     response.json(contact);
   }
