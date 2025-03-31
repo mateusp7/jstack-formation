@@ -40,7 +40,7 @@ class ContactController {
 
   async update(request, response) {
     const { id } = request.params;
-    const { name, email, phone } = request.body;
+    const { name, email, phone, category_id } = request.body;
 
     const contactExists = await ContactsRepository.findById(id);
 
@@ -58,7 +58,7 @@ class ContactController {
       return response.status(400).json({ error: 'This e-mail is already in use' });
     }
 
-    const contact = await ContactsRepository.update(id, { name, email, phone, category_id: contactByEmail ? contactByEmail.category_id : null });
+    const contact = await ContactsRepository.update(id, { name, email, phone, category_id: contactByEmail && !category_id ? contactByEmail.category_id : category_id });
 
     response.json(contact);
   }
