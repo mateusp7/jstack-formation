@@ -18,4 +18,4 @@ CREATE TABLE IF NOT EXISTS contacts (
 
 ALTER TABLE contacts
 DROP CONSTRAINT contacts_category_id_fkey,
-ADD CONSTRAINT contacts_category_id_fkey FOREIGN KEY (category_id) REFERENCES categories(id);
+ADD CONSTRAINT contacts_category_id_fkey FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE;
